@@ -30,6 +30,12 @@
 2. node lsx_to_xml_chinese.js
 3. 把 `Chinese` 文件夹中的所有 `xml` 文件上传 `Paratranz`
 
+## xml 译文转回 lsx
+
+1. 从 `Paratranz` 下载 xml 文件放置到 `Chinese` 文件夹
+2. node xml_to_lsx.js
+3. 把 `Output` 文件夹下所有 `lsx` 放到 `mod` 目录下
+
 ## 文件描述
 
 ### 1. `lsx_to_xml.js`
