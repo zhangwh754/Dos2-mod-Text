@@ -12,6 +12,19 @@ async function LsxToXml(inputDir, outputDir) {
 
     files.forEach((file) => {
       const filePath = path.resolve(__dirname, inputDir, file);
+
+      if (fs.statSync(filePath).isDirectory()) {
+        // 递归
+        const newOutputDir = path.resolve(outputDir, file);
+        if (!fs.existsSync(newOutputDir)) {
+          fs.mkdirSync(newOutputDir);
+        }
+
+        LsxToXml(filePath, newOutputDir);
+
+        return;
+      }
+
       const filename = path.basename(filePath, ".lsx");
       const inputContent = fs.readFileSync(filePath, "utf-8");
       const outputPath = path.resolve(__dirname, outputDir, `${filename}.xml`);
