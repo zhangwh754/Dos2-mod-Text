@@ -60,6 +60,10 @@ async function convertLsxToXml(inputContent, outputPath) {
   // 创建新XML
   const root = create({ version: "1.0", encoding: "utf-8" }).ele("contentList");
 
+  if (contents.length <= 1) {
+    contents.push({ uid: "foo", value: "" }, { uid: "bar", value: "" });
+  }
+
   contents.forEach((content) => {
     root.ele("content", { contentuid: content.uid }).txt(content.value);
   });
@@ -68,7 +72,7 @@ async function convertLsxToXml(inputContent, outputPath) {
 
   // 写入输出文件
   fs.writeFileSync(outputPath, outputXml);
-  console.log("转换完成！");
+  console.log(`${path.basename(outputPath)}转换完成！`);
 }
 
-LsxToXml("./Original", "./Output");
+LsxToXml("./Original", "./English");
